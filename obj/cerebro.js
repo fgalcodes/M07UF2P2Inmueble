@@ -4,4 +4,5 @@ class Cerebro {
     altaVivienda(inmueble) {
         this.inmuebles.push(inmueble);
     }
+
 }

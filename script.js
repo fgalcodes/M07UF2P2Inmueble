@@ -22,5 +22,5 @@ formAgregar.addEventListener("submit", (e) => {
     var nuevoInmueble = new Piso();
     nuevoInmueble.direccion = document.getElementById("direccion-inmueble").value
 
-    console.log(inmuebles.inmuebles[0]);
+    console.log(inmuebles);
 });
