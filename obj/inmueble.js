@@ -39,18 +39,33 @@ class Piso extends Inmueble{
           precio += precio * 0.03;
         }
         if (this.terraza) {
-          precio += this.terraza + 300;
+          precio += this.mCuadradosTerraza * 300;
         }
         return precio;
     }
 }
 class Casa extends Inmueble{
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, tipoDeCasa, nHabitaciones, nLavabos, tieneJardin){
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, tipoDeCasa, nHabitaciones, nLavabos, tieneJardin, tienePiscina, mCuadradosJardin){
         super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas);
         this.tipoDeCasa = tipoDeCasa;
         this.nHabitaciones = nHabitaciones;
         this.nLavabos = nLavabos;
         this.tieneJardin = tieneJardin;
+        this.tienePiscina = tienePiscina;
+        this.mCuadradosJardin = mCuadradosJardin;
+    }
+
+    calcularPrecio() {
+        let precio = super.calcularPrecio();
+        if ((this.tieneJardin && this.mCuadrados > 100) && (this.mCuadrados <= 250)){
+          precio += precio * 0.05;
+        } else if (this.tieneJardin && this.mCuadrados > 250) {
+            precio += precio * 0.09;
+            if (this.tienePiscina) {
+                precio += precio * 0.04;
+              }
+        }
+        return precio;
     }
 }
 class Local extends Inmueble{
@@ -58,6 +73,19 @@ class Local extends Inmueble{
         super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas);
         this.nVentanas = nVentanas;
         this.tieneVentanaMetalica = tieneVentanaMetalica;
+    }
+
+    calcularPrecio() {
+        let precio = super.calcularPrecio();
+        if (this.mCuadrados > 50){
+          precio += precio * 0.01;
+          if (this.nVentanas == 1 || this.nVentanas == 0) {
+            precio -= precio * 0.02;
+          } else if (this.nVentanas > 4) {
+            precio += precio * 0.02;
+          }
+        }
+        return precio;
     }
 }
 class Comercio extends Local{
@@ -71,6 +99,14 @@ class Industrial extends Local{
         super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica);
         this.tienePuestoDeCarga = tienePuestoDeCarga;
         this.tipoDeSuelo = tipoDeSuelo;
+    }
+
+    calcularPrecio() {
+        let precio = super.calcularPrecio();
+        if (this.tipoDeSuelo == "suelo urbano"){
+          precio += precio * 0.25;
+        }
+        return precio;
     }
 }
 class Restauracion extends Local{
