@@ -1,6 +1,6 @@
 class Inmueble {
 
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad) {
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad,show) {
         this.direccion = direccion;
         this.mCuadrados = mCuadrados;
         this.refCatastral = refCatastral;
@@ -9,6 +9,7 @@ class Inmueble {
         this.coordenadas = coordenadas;
         this.antiguedad = antiguedad;
         this.precio = precioBase;
+        this.show = show;
     }
 
     calcularPrecioPrincipal() {
@@ -30,8 +31,8 @@ class Inmueble {
 
 
 class Piso extends Inmueble {
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad, planta, puerta, nHabitaciones, nLavabos, tieneAscensor, mCuadradosTerraza) {
-        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad);
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad,show ,planta, puerta, nHabitaciones, nLavabos, tieneAscensor, mCuadradosTerraza) {
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad,show);
         this.planta = planta;
         this.puerta = puerta
         this.nHabitaciones = nHabitaciones;
@@ -56,8 +57,8 @@ class Piso extends Inmueble {
 
 
 class Casa extends Inmueble {
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, tipoDeCasa, nHabitaciones, nLavabos, tieneJardin, tienePiscina, mCuadradosJardin) {
-        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas);
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad, show ,tipoDeCasa, nHabitaciones, nLavabos, tieneJardin, tienePiscina, mCuadradosJardin) {
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad, show);
         this.tipoDeCasa = tipoDeCasa;
         this.nHabitaciones = nHabitaciones;
         this.nLavabos = nLavabos;
@@ -87,8 +88,8 @@ class Casa extends Inmueble {
 
 
 class Local extends Inmueble {
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica) {
-        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas);
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show ,nVentanas, tieneVentanaMetalica) {
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show);
         this.nVentanas = nVentanas;
         this.tieneVentanaMetalica = tieneVentanaMetalica;
     }
@@ -109,15 +110,15 @@ class Local extends Inmueble {
     }
 }
 class Comercio extends Local {
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica, esAccesible) {
-        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica);
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show ,nVentanas, tieneVentanaMetalica, esAccesible) {
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show, nVentanas, tieneVentanaMetalica);
         this.esAccesible = esAccesible;
     }
 
 }
 class Industrial extends Local {
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica, tienePuestoDeCarga, tipoDeSuelo) {
-        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica);
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show, nVentanas, tieneVentanaMetalica, tienePuestoDeCarga, tipoDeSuelo) {
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show, nVentanas, tieneVentanaMetalica);
         this.tienePuestoDeCarga = tienePuestoDeCarga;
         this.tipoDeSuelo = tipoDeSuelo;
     }
@@ -143,8 +144,8 @@ class Industrial extends Local {
     }
 }
 class Restauracion extends Local {
-    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica, tieneExtractorDeHumos, tieneMobiliario, tieneCafetera) {
-        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica);
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show, nVentanas, tieneVentanaMetalica, tieneExtractorDeHumos, tieneMobiliario, tieneCafetera) {
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show, nVentanas, tieneVentanaMetalica);
         this.tieneExtractorDeHumos = tieneExtractorDeHumos;
         this.tieneMobiliario = tieneMobiliario;
         this.tieneCafetera = tieneCafetera;
