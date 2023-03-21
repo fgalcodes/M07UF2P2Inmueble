@@ -1,103 +1,83 @@
 class Inmueble {
-    direccion;
-    mCuadrados;
-    refCatastral;
-    precioBase;
-    foto;
-    estado;
-    coordenadas;
-    anyos;
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad) {
+        this.direccion = direccion;
+        this.mCuadrados = mCuadrados;
+        this.refCatastral = refCatastral;
+        this.precioBase = precioBase;
+        this.estado = estado;
+        this.coordenadas = coordenadas;
+        this.antiguedad = antiguedad;
+        this.precio = this.calcularPrecio();
+    }
 
-    constructor() {
-        this.direccion = "";
-        this.mCuadrados = 0;
-        this.refCatastral = "";
-        this.precioBase = 0;
-        this.estado = "";
-        this.coordenadas = [];
-        this.anyos = 0;       
+    calcularPrecio() {
+        let precio = this.precioBase;
+
+        if (this.antiguedad > 10) {
+            let descuento = (antiguedad - 10) * 0.01;
+            precio -= precio * descuento;
+        } else if (this.antiguedad > 20) {
+            precio -= precio * 0.1;
+        }
+
+        return precio;
     }
 }
+class Piso extends Inmueble{
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, planta, nHabitaciones, nLavabos, tieneAscensor, mCuadradosTerraza){
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas);
+        this.planta = planta;
+        this.nHabitaciones = nHabitaciones;
+        this.nLavabos = nLavabos;
+        this.tieneAscensor = tieneAscensor;
+        this.mCuadradosTerraza = mCuadradosTerraza;
+    }
 
-class Piso extends Inmueble {
-    planta;
-    portal;
-    terraza;
-
-    constructor() {
-        super();
-        this.planta = 0;
-        this.portal = "";
-        this.terraza = false;
-
+    calcularPrecio() {
+        let precio = super.calcularPrecio();
+        if (this.tieneAscensor && this.piso >= 3) {
+          precio += precio * 0.03;
+        }
+        if (this.terraza) {
+          precio += this.terraza + 300;
+        }
+        return precio;
     }
 }
-
-class Casa{
-    nParedesColin;
-    unifamiliar;
-    nBanyos;
-    nHabitaciones
-
-    extras = new Map();
-    jardin;
-    tamanyoJardin;
-    piscina;
-}
-
-class Local{
-
-    nVentanas;
-    persianaMetalica;
-
-    constructor(vent,pers){
-        this.nVentanas = vent;
-        this.persianaMetalica = pers;
-    }
-
-    variaPrecioLocal(){
-
-    }
-
-}
-
-class Restauracion extends Local
-{
-    equipacion = new Map();
-
-    constructor(vent,pers,extract,cafet,mobili){
-        super(vent,pers);
-        this.equipacion.set("Extractor",extract);
-        this.equipacion.set("Cafetera",cafet);
-        this.equipacion.set("Mobiliario",mobili);
+class Casa extends Inmueble{
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, tipoDeCasa, nHabitaciones, nLavabos, tieneJardin){
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas);
+        this.tipoDeCasa = tipoDeCasa;
+        this.nHabitaciones = nHabitaciones;
+        this.nLavabos = nLavabos;
+        this.tieneJardin = tieneJardin;
     }
 }
-
-class Industrial extends Local {
-
-    tipoSuelo;
-    persianaMetalica;
-
-    constructor(vent,pers,tipSuel,persMetal){
-        super(vent,pers);
-        this.tipoSuelo = tipSuel;
-        this.persianaMetalica = persMetal;
-    }
-
-    cobroImpuestos(){
-
+class Local extends Inmueble{
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica){
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas);
+        this.nVentanas = nVentanas;
+        this.tieneVentanaMetalica = tieneVentanaMetalica;
     }
 }
-
 class Comercio extends Local{
-
-    accesible;
-
-    constructor(vent,pers,accs){
-        super(vent, pers);
-        this.accesible = accs;
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica, esAccesible){
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica);
+        this.esAccesible = esAccesible;
     }
-    
 }
-
-
+class Industrial extends Local{
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica, tienePuestoDeCarga, tipoDeSuelo){
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica);
+        this.tienePuestoDeCarga = tienePuestoDeCarga;
+        this.tipoDeSuelo = tipoDeSuelo;
+    }
+}
+class Restauracion extends Local{
+    constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica, tieneExtractorDeHumos, tieneMobiliario, tieneCafetera){
+        super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, nVentanas, tieneVentanaMetalica);
+        this.tieneExtractorDeHumos = tieneExtractorDeHumos;
+        this.tieneMobiliario = tieneMobiliario;
+        this.tieneCafetera = tieneCafetera;
+    }
+}
