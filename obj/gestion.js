@@ -1,4 +1,4 @@
-class Cerebro {
+class Gestion {
     inmuebles = [];
 
     altaVivienda(inmueble) {
