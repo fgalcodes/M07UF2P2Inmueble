@@ -1,0 +1,5 @@
+alta/baja/modificar/desactivar un inmueble, en gestión.
+
+aseguararse que los hijos heredan todas las propiedades correctamente.
+
+sobreescribir el metodo de calcularPrecio.
