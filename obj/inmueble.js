@@ -1,6 +1,7 @@
 class Inmueble {
 
     constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad,show) {
+
         this.direccion = direccion;
         this.mCuadrados = mCuadrados;
         this.refCatastral = refCatastral;
@@ -9,9 +10,7 @@ class Inmueble {
         this.coordenadas = coordenadas;
         this.antiguedad = antiguedad;
         this.show = show;
-    }
 }
-
 
 class Piso extends Inmueble {
     constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad,show ,planta, puerta, nHabitaciones, nLavabos, tieneAscensor, tieneTerraza,mCuadradosTerraza) {
@@ -26,9 +25,7 @@ class Piso extends Inmueble {
     }
 }
 
-
 class Casa extends Inmueble {
-
     constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad, show ,tipoDeCasa, nHabitaciones, nLavabos, tieneJardin, tienePiscina, mCuadradosJardin) {
         super(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad, show);
         this.tipoDeCasa = tipoDeCasa;
@@ -39,7 +36,6 @@ class Casa extends Inmueble {
         this.mCuadradosJardin = mCuadradosJardin;
     }
 }
-
 
 class Local extends Inmueble {
     constructor(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas,antiguedad,show ,nVentanas, tienePersianaMetalica) {
