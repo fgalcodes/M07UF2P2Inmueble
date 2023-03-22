@@ -24,4 +24,4 @@ console.log(inmueble1); // funciona meter la funcion al atributo precio.
 
 var pisito1 = new Piso(direccion, mCuadrados, refCatastral, precioBase, estado, coordenadas, antiguedad, planta, nHabitaciones, nLavabos, tieneAscensor, mCuadradosTerraza);
 
-console.log(pisito1); // 
+console.log(pisito1); // //
