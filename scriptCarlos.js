@@ -14,5 +14,6 @@ function Main(){
     console.log(piso.precioBase);
     gestor.modificarInmueble(piso,"precioBase",10000);
     console.log(piso.precioBase);
+    console.log("prueba");
     
 }
